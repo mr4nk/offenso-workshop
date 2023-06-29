@@ -2,23 +2,36 @@ Youtube Channels
 --------
 
 Bugcrowd : https://www.youtube.com/channel/UCo1NHk_bgbAbDBc4JinrXww
+
 HackerOne : https://www.youtube.com/channel/UCsgzmECky2Q9lQMWzDwMhYw
+
 Stok : https://www.youtube.com/channel/UCQN2DsjnYH60SFBIA6IkNwg
+
 Nahamsec : https://www.youtube.com/channel/UCCZDt7MuC3Hzs6IH4xODLBw
+
 The Cyber Mentor : https://www.youtube.com/channel/UC0ArlFuFYMpEewyRBzdLHiw
+
 Bug Bounty Reports Explained : https://www.youtube.com/c/BugBountyReportsExplained
 
 CTF
 ----------
 
 CTFTime (https://ctftime.org)
+
 CyberTalents (https://cybertalents.com)
+
 H1 CTF (https://ctf.hacker101.com)
+
 Hackthebox (https://www.hackthebox.eu)
+
 TryHackMe (https://tryhackme.com)
+
 VulnHub (https://www.vulnhub.com)
+
 RootMe (https://www.root-me.org)
+
 Wizard Labs (https://labs.wizard-security.net)
+
 PentestIt (https://lab.pentestit.ru)
 
 
@@ -26,7 +39,9 @@ Bug Bounty Articles
 -----------
 
 Pentester land - https://pentester.land/list-of-bug-bounty-writeups.html
+
 HackerOne Reports  - https://hackerone.com/hacktivity
+
 Medium.com - https://medium.com/bugbountywriteup/tagged/bug-bounty
 
 
@@ -53,7 +68,6 @@ SQLMAP
 ```sqlmap -u http://localhost:8000/Post.php?id=7 -D cms_blog --tables```
 
 ```sqlmap -u http://localhost:8000/Post.php?id=7 -D cms_blog -T cms_admin --dump```
-
 
 
 XSS
